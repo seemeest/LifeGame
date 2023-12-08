@@ -1,0 +1,62 @@
+﻿<Window x:Class="LifeGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LifeGame"
+        mc:Ignorable="d"
+        Title="Игра ЖИЗНЬ Дж. Конвея" Height="560" Width="540">
+    <Grid Background="#F1F1F1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Panel.ZIndex="2" Orientation="Horizontal" Grid.Row="0" Name="StartSettings">
+            <Button Content="Start Sequential" Click="StartSequential_Click"/>
+
+            <Button Content="Start with Cancellation" Click="StartWithCancellation_Click"/>
+            <Button Content="Stop" Click="Stop_Click"/>
+            <TextBlock VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+        FontSize="20"
+            Name="ParalelTime"> </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"  Name="Settings" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
+            <StackPanel>
+                <TextBlock>Высота</TextBlock>
+                <TextBox x:Name="HeightTB"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Ширины</TextBlock>
+                <TextBox x:Name="WitdhTB"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Размер Клетки</TextBlock>
+                <TextBox x:Name="CellSizeTB"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock>Процент генерации клетки</TextBlock>
+                <Slider Value="2" Minimum="2" Maximum="15" SelectionStart="0" Height="30" 
+                IsSelectionRangeEnabled="True" Name="GenerateProcentSlider" />
+            </StackPanel>
+            <Button Content="Готово" Click="SaveSettingClick"></Button>
+            <TextBlock  x:Name="ErorText"></TextBlock>
+        </StackPanel>
+        <DockPanel Grid.Row="1" x:Name="CanvasPanel"  Grid.Column="0" LastChildFill="True">
+            <Canvas Name="canvasParalel" />
+  
+        </DockPanel> 
+        <DockPanel Grid.Row="1" x:Name="CanvasPanel2"  Grid.Column="1" LastChildFill="True">
+            <Canvas Name="canvasSequential" />
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Name="SequentialTime"></TextBlock>
+        </DockPanel>
+
+    </Grid>
+</Window>
